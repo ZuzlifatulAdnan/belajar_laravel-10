@@ -3,12 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>show</title>
 </head>
 <body>
-    <p>{{$student -> name}}:</p>
-
-    @foreach ($activities as $activity)
+    <p>ID :{{$student -> id}}</p>    
+    <p>Name :{{$student -> name}}</p>
+    <p>Score : {{$student -> score}}</p>
+    <br>
+    <p>Activities:</p>
+    @foreach ($student->activities as $activity)
         <p>{{ $activity -> name}}</p>
     @endforeach
 </body>

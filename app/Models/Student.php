@@ -8,6 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Student extends Model
 {
     use HasFactory;
+
+    protected $fillable =[
+        'name',
+        'score',
+        'teacher_id'
+    ];
+
     public function contact()
     {
         return $this->hasOne(contact::class);
