@@ -6,6 +6,7 @@ use App\Models\Activity;
 use App\Models\Student;
 use App\Models\Teachers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 
 class StudentController extends Controller
@@ -18,8 +19,13 @@ class StudentController extends Controller
 
     public function index(){
         // $students = Student::all();
+        
+        $user= Auth::user();
+        $id=Auth::id();
+
+
         $students = Student::paginate(2);
-        return view('index', ['students'=>$students]);
+        return view('index', ['students'=>$students, 'user'=>$user, 'id'=>$id]);
     }
 
     public function filter()
@@ -68,6 +74,12 @@ class StudentController extends Controller
             'name'=>$request->name,
             'score' =>$request->score
         ]);
+        return Redirect::route('index');
+    }
+
+    public function delete(Student $student)
+    {
+        $student->delete();
         return Redirect::route('index');
     }
 }
